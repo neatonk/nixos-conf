@@ -5,7 +5,6 @@
   environment.systemPackages = with pkgs; [
     bash
     bashCompletion
-    fftw # libfftw3.so
     lsof # list open files (e.g. /dev/snd/*)
     tree
     tmux # screen alternative
@@ -16,8 +15,6 @@
   environment.x11Packages = with pkgs; [
     xdg_utils # default apps, etc.
     xfontsel
-    xlibs.xev # for identifying x events.
-    xlibs.xmodmap
   ];
 
   services= {
@@ -35,14 +32,19 @@
     openssh.forwardX11 = false;
   };
 
-  # chroot for builds
-  nix.useChroot = true;
-
-  boot.loader.grub = {
-    enable = true;
-    version = 1;
-    splashImage = null;
+  nix = {
+    gc.automatic = true;  # nix-collect-garbage
+    useChroot = true;     # chroot for builds
   };
+
+  boot = {
+    loader.grub = {
+      enable = true;
+      version = 1;
+      splashImage = null;
+    };
+    cleanTmpDir = true;
+  };  
 
   swapDevices = [ { label = "swap"; } ];
 

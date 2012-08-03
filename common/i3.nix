@@ -3,11 +3,11 @@
 
 {
   environment.x11Packages = with pkgs; [
-    dmenu # for app launcher
-    feh # for background image
-    i3lock # screen lock
-    i3status # sys info
-    scrot # for screenshot
+    dmenu     # for app launcher
+    feh       # for background image
+    i3lock    # screen lock
+    i3status  # sys info
+    scrot     # for screenshot
     
     # xorg.utilmacros
     # xorg.xcursorgen
